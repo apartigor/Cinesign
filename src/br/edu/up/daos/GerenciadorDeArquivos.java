@@ -16,6 +16,7 @@ public class GerenciadorDeArquivos {
         List<Pessoa> pessoas = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
             String linha;
+            br.readLine();
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(DELIMITER);
                 if (dados.length > 4 && dados[4].isEmpty()) {
@@ -37,10 +38,12 @@ public class GerenciadorDeArquivos {
             for (Pessoa pessoa : pessoas) {
                 if (pessoa instanceof Gerente) {
                     Gerente gerente = (Gerente) pessoa;
-                    pw.println(String.join(DELIMITER, gerente.getNome(), gerente.getCpf(), gerente.getEmail(), "", "", gerente.getCodigo()));
+                    pw.println(String.join(DELIMITER, gerente.getNome(), gerente.getCpf(), gerente.getEmail(), "", "",
+                            gerente.getCodigo()));
                 } else if (pessoa instanceof Cliente) {
                     Cliente cliente = (Cliente) pessoa;
-                    pw.println(String.join(DELIMITER, cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getCelular(), cliente.getDataNasc(), ""));
+                    pw.println(String.join(DELIMITER, cliente.getNome(), cliente.getCpf(), cliente.getEmail(),
+                            cliente.getCelular(), cliente.getDataNasc(), ""));
                 }
             }
         } catch (IOException e) {
