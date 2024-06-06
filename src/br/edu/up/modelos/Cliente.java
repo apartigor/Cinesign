@@ -10,10 +10,17 @@ public class Cliente extends Pessoa {
         this.dataNasc = dataNasc;
     }
 
+    public String getCelular() {
+        return celular;
+    }
+
+    public String getDataNasc() {
+        return dataNasc;
+    }
+
     @Override
     public String toString() {
         return "Cliente [nome= " + nome + ", cpf=" + cpf + ", celular=" + celular + " dataNasc=" + dataNasc + ", email="
                 + email + "]";
     }
-
 }

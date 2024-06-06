@@ -11,4 +11,16 @@ public abstract class Pessoa {
         this.email = email;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
 }

@@ -1,33 +1,23 @@
 package br.edu.up.modelos;
 
-public class Gerente {
-    private String nome;
+public class Gerente extends Pessoa {
     private String codigo;
 
-    public Gerente(String nome, String codigo) {
-        this.nome = nome;
+    public Gerente(String cpf, String nome, String email, String codigo) {
+        super(cpf, nome, email);
         this.codigo = codigo;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getcodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setcodigo(String codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
     @Override
     public String toString() {
-        return "Gerente [nome=" + nome + ", codigo=" + codigo + "]";
+        return "Gerente [nome=" + nome + ", cpf=" + cpf + ", codigo=" + codigo + "]";
     }
 }
-
