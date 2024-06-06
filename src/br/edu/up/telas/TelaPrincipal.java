@@ -74,7 +74,7 @@ public class TelaPrincipal {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Cadastro de Filmes");
+                    cadastroDeFilmes();
                     break;
                 case 2:
                     System.out.println("Cadastro de Sessão");
@@ -113,6 +113,11 @@ public class TelaPrincipal {
         for (Pessoa pessoa : controleDePessoas.listarPessoas()) {
             System.out.println(pessoa);
         }
+    }
+
+    // Cadastro de filme
+    public void cadastroDeFilmes() {
+
     }
 
 }
