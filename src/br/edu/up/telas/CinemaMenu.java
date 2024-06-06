@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class CinemaMenu {
     private static final String SENHA_FUNCIONARIOS = "1234";
+    private static final String SENHA_GERENTE = "0000";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -44,7 +45,13 @@ public class CinemaMenu {
         System.out.print("Digite a senha para acessar o menu de funcionários: ");
         String senha = scanner.nextLine();
         return SENHA_FUNCIONARIOS.equals(senha);
+        
     }
+
+    /*private static boolean verificarSenhaGerente(Scanner scanner) {
+        String senha = scanner.nextLine();
+        return SENHA_GERENTE.equals(senha);
+    }*/
 
     public static void menuFuncionarios(Scanner scanner) {
         int opcao;
