@@ -1,15 +1,14 @@
 package br.edu.up.controles;
 
 import br.edu.up.modelos.Filme;
-import br.edu.up.modelos.Pessoa;
-import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
+// import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
 
 import java.util.List;
 
 public class ControleDeFilmes {
 
     private List<Filme> filmes;
-    private GerenciadorDeAquivosDeFilmes gerenciadorDeArquivosFilmes;
+    // private GerenciadorDeAquivosDeFilmes gerenciadorDeArquivosFilmes;
 
     public ControleDeFilmes() {
 
@@ -20,7 +19,7 @@ public class ControleDeFilmes {
     }
 
     public void salvarFilmes() {
-        // gerenciadorDeArquivosFilmes.gravarArquivoCSV(filmes);
+        
     }
 
     public void adicionarFilme(Filme filme) {
