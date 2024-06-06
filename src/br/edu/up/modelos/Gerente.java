@@ -1,10 +1,10 @@
 package br.edu.up.modelos;
 
-public class Funcionario {
+public class Gerente {
     private String nome;
     private String cargo;
 
-    public Funcionario(String nome, String cargo) {
+    public Gerente(String nome, String cargo) {
         this.nome = nome;
         this.cargo = cargo;
     }
@@ -27,7 +27,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario [nome=" + nome + ", cargo=" + cargo + "]";
+        return "Gerente [nome=" + nome + ", cargo=" + cargo + "]";
     }
 }
 
