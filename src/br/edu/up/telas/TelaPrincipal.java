@@ -57,7 +57,7 @@ public class TelaPrincipal {
         do {
             System.out.println("\nMenu Funcionários");
             System.out.println("1. Cadastrar Filmes");
-            System.out.println("2. Cadastrar Seção");
+            System.out.println("2. Cadastrar Sessão");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -68,7 +68,7 @@ public class TelaPrincipal {
                     System.out.println("Cadastro de Filmes");
                     break;
                 case 2:
-                    System.out.println("Cadastro de Seção");
+                    System.out.println("Cadastro de Sessão");
                     break;
                 default:
                     System.out.println("Opção inválida!");
