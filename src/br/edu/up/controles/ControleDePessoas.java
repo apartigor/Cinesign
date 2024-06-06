@@ -1,16 +1,16 @@
 package br.edu.up.controles;
 
-import br.edu.up.daos.GerenciadorDeArquivos;
+import br.edu.up.daos.GerenciadorDeArquivosDePessoas;
 import br.edu.up.modelos.Pessoa;
 
 import java.util.List;
 
 public class ControleDePessoas {
     private List<Pessoa> pessoas;
-    private GerenciadorDeArquivos gerenciadorDeArquivos;
+    private GerenciadorDeArquivosDePessoas gerenciadorDeArquivos;
 
     public ControleDePessoas() {
-        gerenciadorDeArquivos = new GerenciadorDeArquivos();
+        gerenciadorDeArquivos = new GerenciadorDeArquivosDePessoas();
         pessoas = gerenciadorDeArquivos.lerArquivoCSV();
     }
 

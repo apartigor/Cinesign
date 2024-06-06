@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GerenciadorDeArquivos {
+public class GerenciadorDeArquivosDePessoas {
     private static final String CSV_FILE = "src\\br\\edu\\up\\resources\\pessoas.csv";
     private static final String DELIMITER = ";";
 
