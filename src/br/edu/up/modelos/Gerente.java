@@ -2,11 +2,11 @@ package br.edu.up.modelos;
 
 public class Gerente {
     private String nome;
-    private String cargo;
+    private String codigo;
 
-    public Gerente(String nome, String cargo) {
+    public Gerente(String nome, String codigo) {
         this.nome = nome;
-        this.cargo = cargo;
+        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -17,17 +17,17 @@ public class Gerente {
         this.nome = nome;
     }
 
-    public String getCargo() {
-        return cargo;
+    public String getcodigo() {
+        return codigo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setcodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     @Override
     public String toString() {
-        return "Gerente [nome=" + nome + ", cargo=" + cargo + "]";
+        return "Gerente [nome=" + nome + ", codigo=" + codigo + "]";
     }
 }
 
