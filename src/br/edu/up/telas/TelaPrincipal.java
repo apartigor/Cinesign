@@ -8,19 +8,23 @@ package br.edu.up.telas;
 
 import java.util.Scanner;
 
+import br.edu.up.controles.ControleDeFilmes;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.modelos.Pessoa;
+import br.edu.up.modelos.Filme;
 
 public class TelaPrincipal {
     private static final String SENHA_GERENTE = "1234";
     private ControleDePessoas controleDePessoas;
+    private ControleDeFilmes controleDeFilmes;
+
+    Scanner scanner = new Scanner(System.in);
 
     public TelaPrincipal() {
         this.controleDePessoas = new ControleDePessoas();
     }
 
     public void exibirMenu() {
-        Scanner scanner = new Scanner(System.in);
         int opcao;
 
         do {
@@ -51,7 +55,6 @@ public class TelaPrincipal {
             }
         } while (opcao != 0);
 
-        scanner.close();
     }
 
     private boolean verificarSenha(Scanner scanner) {
@@ -75,6 +78,7 @@ public class TelaPrincipal {
             switch (opcao) {
                 case 1:
                     cadastroDeFilmes();
+
                     break;
                 case 2:
                     System.out.println("Cadastro de Sessão");
@@ -115,9 +119,32 @@ public class TelaPrincipal {
         }
     }
 
-    // Cadastro de filme
+    // Filme
     public void cadastroDeFilmes() {
-        
+
+        Filme filme = new Filme();
+
+        System.out.println("\nCadastro de Filme");
+
+        System.out.println("Digite o código do filme: ");
+        filme.setCodFilme(scanner.nextLine());
+
+        System.out.println("Digite o nome do filme: ");
+        filme.setNomeFilme(scanner.nextLine());
+
+        System.out.println("Digite o gênero do filme: ");
+        filme.setGeneroFilme(scanner.nextLine());
+
+        System.out.println("Digite a distribuidora do filme: ");
+        filme.setDistribuidora(scanner.nextLine());
+
+        controleDeFilmes.adicionarFilme(filme);
     }
 
+    public void listarFilmes() {
+        System.out.println("\nLista de Filmes: ");
+        for (Filme filme : controleDeFilmes.listarFilmes()) {
+            System.out.println(filme);
+        }
+    }
 }

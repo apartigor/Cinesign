@@ -59,5 +59,8 @@ public class Filme {
         this.distribuidora = distribuidora;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Filme: " + nomeFilme + "\nCódigo: " + codFilme + "\nGênero: " + generoFilme + "\nDistribuidora: " + distribuidora;
+    }
 }
