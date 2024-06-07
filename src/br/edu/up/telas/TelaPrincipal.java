@@ -22,6 +22,7 @@ public class TelaPrincipal {
 
     public TelaPrincipal() {
         this.controleDePessoas = new ControleDePessoas();
+        this.controleDeFilmes = new ControleDeFilmes();
     }
 
     public void exibirMenu() {
@@ -77,8 +78,17 @@ public class TelaPrincipal {
 
             switch (opcao) {
                 case 1:
-                    cadastroDeFilmes();
+                    String opt = "";
+                    do {
+                        cadastroDeFilmes();
+                        System.out.println("\nFilme cadastrado com sucesso!!");
+                        System.out.println("\nDeseja cadastrar mais um filme? ");
+                        System.out.println("\nSim (S) / Não (N)");
+                        System.out.print("\nDigite a opção desejada: ");
+                        opt = scanner.nextLine();
 
+                    } while (opt.equals("S") || opt.equals("Sim") || opt.equals("sim"));
+                    listarFilmes();
                     break;
                 case 2:
                     System.out.println("Cadastro de Sessão");
@@ -144,7 +154,7 @@ public class TelaPrincipal {
     public void listarFilmes() {
         System.out.println("\nLista de Filmes: ");
         for (Filme filme : controleDeFilmes.listarFilmes()) {
-            System.out.println(filme);
+            System.out.println(filme + "\n");
         }
     }
 }
