@@ -6,17 +6,17 @@ public class Ingresso {
     private int sala;
     private String data;
     private String horario;
-    private String idiomaLegenda;
-    private String idiomaAudio;
+    private String legenda;
+    private String audio;
     private String assento;
     
-    public Ingresso(Filme nomeFilme, int sala, String data, String horario, String idiomaLegenda, String idiomaAudio, String assento) {
+    public Ingresso(Filme nomeFilme, int sala, String data, String horario, String legenda, String audio, String assento) {
         this.nomeFilme = nomeFilme;
         this.sala = sala;
         this.data = data;
         this.horario = horario;
-        this.idiomaLegenda = idiomaLegenda;
-        this.idiomaAudio = idiomaAudio;
+        this.legenda = legenda;
+        this.audio = audio;
         this.assento = assento;
     }
 
@@ -44,20 +44,20 @@ public class Ingresso {
         this.horario = horario;
     }
 
-    public String getIdiomaLegenda() {
-        return idiomaLegenda;
+    public String getLegenda() {
+        return legenda;
     }
 
-    public void setIdiomaLegenda(String idiomaLegenda) {
-        this.idiomaLegenda = idiomaLegenda;
+    public void setLegenda(String legenda) {
+        this.legenda = legenda;
     }
 
-    public String getIdiomaAudio() {
-        return idiomaAudio;
+    public String getAudio() {
+        return audio;
     }
 
-    public void setIdiomaAudio(String idiomaAudio) {
-        this.idiomaAudio = idiomaAudio;
+    public void setAudio(String audio) {
+        this.audio = audio;
     }
 
     public String getAssento() {
@@ -71,6 +71,6 @@ public class Ingresso {
     @Override
     public String toString() {
         return "Ingresso [nomeFilme=" + nomeFilme + ", sala=" + sala + ", data=" + data + ", horario=" + horario
-                + ", idiomaLegenda=" + idiomaLegenda + ", idiomaAudio=" + idiomaAudio + ", assento=" + assento + "]";
+                + ", legenda=" + legenda + ", audio=" + audio + ", assento=" + assento + "]";
     }
 }
