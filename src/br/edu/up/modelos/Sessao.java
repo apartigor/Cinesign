@@ -2,6 +2,7 @@ package br.edu.up.modelos;
 
 public class Sessao {
 
+    private String codigo;
     private String nomeFilme;
     private int sala;
     private String data;
@@ -10,6 +11,9 @@ public class Sessao {
     private String audio;
     private String assento;
     
+    public Sessao(){
+    }
+
     public Sessao(String nomeFilme, int sala, String data, String horario, String legenda, String audio, String assento) {
         this.nomeFilme = nomeFilme;
         this.sala = sala;
@@ -18,6 +22,23 @@ public class Sessao {
         this.legenda = legenda;
         this.audio = audio;
         this.assento = assento;
+    }
+
+
+    public String getNomeFilme() {
+        return nomeFilme;
+    }
+
+    public void setNomeFilme(String nomeFilme) {
+        this.nomeFilme = nomeFilme;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public int getSala() {

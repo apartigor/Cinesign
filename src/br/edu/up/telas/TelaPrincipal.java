@@ -11,15 +11,18 @@ import java.util.Scanner;
 import br.edu.up.controles.ControleDeCadastroCliente;
 import br.edu.up.controles.ControleDeFilmes;
 import br.edu.up.controles.ControleDePessoas;
+import br.edu.up.controles.ControleDeSessao;
 import br.edu.up.modelos.Pessoa;
 import br.edu.up.modelos.Cliente;
 import br.edu.up.modelos.Filme;
+import br.edu.up.modelos.Sessao;
 
 public class TelaPrincipal {
     private static final String SENHA_GERENTE = "1234";
     private ControleDePessoas controleDePessoas;
     private ControleDeFilmes controleDeFilmes;
     private ControleDeCadastroCliente controleDeCadastroCliente;
+    private ControleDeSessao controleDeSessao;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -95,6 +98,7 @@ public class TelaPrincipal {
                     listarFilmes();
                     break;
                 case 2:
+                    cadastrarSessao();
                     System.out.println("Cadastro de Sessão");
                     break;
                 case 3:
@@ -118,7 +122,7 @@ public class TelaPrincipal {
 
             switch (opcao) {
                 case 1:
-                    menuFilme();
+                    selecionarFilme();
                     // Menu de selecionar o filme pelo código -> listar sessões -> fazer o pedido
                     break;
                 default:
@@ -164,15 +168,76 @@ public class TelaPrincipal {
         }
     }
 
-    private void menuFilme() {
+    private void selecionarFilme() {
         listarFilmes();
             System.out.println("Digite o código do filme: ");
             String codigoFilme = scanner.nextLine();
             for(Filme filme : controleDeFilmes.listarFilmes()){
                 if(codigoFilme.equals(filme.getCodFilme())){
-                    //Menu da sessão
+                    menuSesssao();
                 }
             }
+    }
+
+    // Sessão
+    private void menuSesssao() {
+        int opcao;
+        String codigo;
+
+        controleDeSessao.listarSessao();
+        System.out.println("/nMenu Sessão");
+        System.out.println("1. Escolher Sessão");
+        System.out.println("2. Excluir Sessão");
+        System.out.println("0. Voltar");
+        opcao = scanner.nextInt();
+
+        switch (opcao) {
+            case 0:
+                selecionarFilme();
+                break;
+            case 1:
+                System.out.println("Digite o código da sessão que deseja adicionar: ");
+                codigo = scanner.nextLine();
+                controleDeSessao.selecionarSessao(codigo);
+            case 2:
+                System.out.println("Digite o código da sessão que deseja excluir: ");
+                codigo = scanner.nextLine();
+                controleDeSessao.excluirSessao(codigo);
+                break;
+            default:
+                break;
+        }
+
+    }
+    private void cadastrarSessao() {
+
+        Sessao sessao = new Sessao();
+
+        System.out.println("\nCadastro de Sessão");
+        
+        System.out.println("Digite o código da sessão");
+        sessao.setCodigo(scanner.nextLine());
+
+        System.out.println("Digite a sala da sessão: ");
+        sessao.setSala(scanner.nextInt());
+        scanner.nextLine();
+
+        System.out.println("Digite a data da sessão: ");
+        sessao.setData(scanner.nextLine());
+
+        System.out.println("Digite o horário da sessão");
+        sessao.setHorario(scanner.nextLine());
+
+        System.out.println("Digite o idioma da legenda da sessão");
+        sessao.setLegenda(scanner.nextLine());
+
+        System.out.println("Digite o idioma do áudio da sessão");
+        sessao.setAudio(scanner.nextLine());
+
+        System.out.println("Digite o assento da sessão");
+        sessao.setAssento(scanner.nextLine());
+
+        controleDeSessao.adicionarSessao(sessao);
     }
 
     //CADASTRO CLIENTE
