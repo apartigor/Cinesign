@@ -17,9 +17,13 @@ public class ControleDeSessao {
         return sessoes;
     }
 
+    public void salvarFilmes(){
+
+    }
+
     public void excluirSessao(String codigo){
         for (Sessao sessao : sessoes) {
-            if(codigo.equals(sessao.getCodigo())){
+            if(codigo.equals(sessao.getCodigoSessao())){
                 sessoes.remove(sessao);
             }
             else{
@@ -30,7 +34,7 @@ public class ControleDeSessao {
 
     public void selecionarSessao(String codigo){
         for (Sessao sessao : sessoes) {
-            if(codigo.equals(sessao.getCodigo())){
+            if(codigo.equals(sessao.getCodigoSessao())){
                 pedido.setSessao(sessao);
             }
             else{

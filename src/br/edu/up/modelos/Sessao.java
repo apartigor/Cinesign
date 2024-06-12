@@ -2,26 +2,26 @@ package br.edu.up.modelos;
 
 public class Sessao {
 
-    private String codigo;
+    private String codigoSessao;
     private String nomeFilme;
-    private int sala;
+    private String sala;
     private String data;
     private String horario;
     private String legenda;
     private String audio;
-    private String assento;
+
     
     public Sessao(){
     }
 
-    public Sessao(String nomeFilme, int sala, String data, String horario, String legenda, String audio, String assento) {
+    public Sessao(String codigoSessao, String nomeFilme, String sala, String data, String horario, String legenda, String audio) {
+        this.codigoSessao = codigoSessao;
         this.nomeFilme = nomeFilme;
         this.sala = sala;
         this.data = data;
         this.horario = horario;
         this.legenda = legenda;
         this.audio = audio;
-        this.assento = assento;
     }
 
 
@@ -33,19 +33,19 @@ public class Sessao {
         this.nomeFilme = nomeFilme;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoSessao() {
+        return codigoSessao;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoSessao(String codigoSessao) {
+        this.codigoSessao = codigoSessao;
     }
 
-    public int getSala() {
+    public String getSala() {
         return sala;
     }
 
-    public void setSala(int sala) {
+    public void setSala(String sala) {
         this.sala = sala;
     }
 
@@ -81,17 +81,9 @@ public class Sessao {
         this.audio = audio;
     }
 
-    public String getAssento() {
-        return assento;
-    }
-
-    public void setAssento(String assento) {
-        this.assento = assento;
-    }
-
     @Override
     public String toString() {
         return "Ingresso [nomeFilme=" + nomeFilme + ", sala=" + sala + ", data=" + data + ", horario=" + horario
-                + ", legenda=" + legenda + ", audio=" + audio + ", assento=" + assento + "]";
+                + ", legenda=" + legenda + ", audio=" + audio + "]";
     }
 }

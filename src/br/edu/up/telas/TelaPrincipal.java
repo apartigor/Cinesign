@@ -13,6 +13,7 @@ import br.edu.up.controles.ControleDeFilmes;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
 import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
+import br.edu.up.daos.GerenciadorDeArquivosDeSessoes;
 import br.edu.up.modelos.Pessoa;
 import br.edu.up.modelos.Cliente;
 import br.edu.up.modelos.Filme;
@@ -115,7 +116,7 @@ public class TelaPrincipal {
         int opcao;
         do {
             System.out.println("\nMenu Pedido");
-            System.out.println("1. Escolher filmes disponíveis");
+            System.out.println("1. Escolher Sessão");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -173,18 +174,18 @@ public class TelaPrincipal {
     }
 
     private void selecionarFilme() {
-        listarFilmes();
-            System.out.println("Digite o código do filme: ");
-            String codigoFilme = scanner.nextLine();
-            for(Filme filme : controleDeFilmes.listarFilmes()){
-                if(codigoFilme.equals(filme.getCodFilme())){
-                    menuSesssao();
+        controleDeSessao.listarSessao();
+            System.out.println("Digite o código da sessão: ");
+            String codigoSessao = scanner.nextLine();
+            for(Sessao sessao : controleDeSessao.listarSessao()){
+                if(codigoSessao.equals(sessao.getCodigoSessao())){
+                    menuSessao();
                 }
             }
     }
 
     // Sessão
-    private void menuSesssao() {
+    private void menuSessao() {
         int opcao;
         String codigo;
 
@@ -219,26 +220,39 @@ public class TelaPrincipal {
 
         System.out.println("\nCadastro de Sessão");
         
-        System.out.println("Digite o código da sessão");
-        sessao.setCodigo(scanner.nextLine());
+        System.out.println("Digite o código da sessão: ");
+        sessao.setCodigoSessao(scanner.nextLine());
+
+        System.out.println("Digite o nome do filme: ");
+        sessao.setAudio(scanner.nextLine());
 
         System.out.println("Digite a sala da sessão: ");
-        sessao.setSala(scanner.nextInt());
+        sessao.setSala(scanner.nextLine());
         scanner.nextLine();
 
         System.out.println("Digite a data da sessão: ");
         sessao.setData(scanner.nextLine());
 
-        System.out.println("Digite o horário da sessão");
+        System.out.println("Digite o horário da sessão: ");
         sessao.setHorario(scanner.nextLine());
 
-        System.out.println("Digite o idioma da legenda da sessão");
+        System.out.println("Digite o idioma da legenda da sessão: ");
         sessao.setLegenda(scanner.nextLine());
 
-        System.out.println("Digite o idioma do áudio da sessão");
+        System.out.println("Digite o idioma do áudio da sessão: ");
         sessao.setAudio(scanner.nextLine());
 
         controleDeSessao.adicionarSessao(sessao);
+
+        GerenciadorDeArquivosDeSessoes.salvarSessao(sessao);
+    }
+
+    public void listarSessoes() {
+        System.out.println("\nLista de Sessões: ");
+        for (Sessao sessao : controleDeSessao.listarSessao()) {
+            System.out.println(sessao + "\n");
+        }
+        GerenciadorDeArquivosDeSessoes.listaSessoesCsv();
     }
 
     //CADASTRO CLIENTE
