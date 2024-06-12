@@ -106,7 +106,7 @@ public class TelaPrincipal {
         int opcao;
         do {
             System.out.println("\nMenu Pedido");
-            System.out.println("1. Listar filmes disponíveis");
+            System.out.println("1. Escolher filmes disponíveis");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -114,7 +114,8 @@ public class TelaPrincipal {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("teste");
+                    listarFilmes();
+                    // Menu de selecionar o filme pelo código -> listar sessões -> fazer o pedido
                     break;
                 default:
                     System.out.println("Opção inválida!");
@@ -122,6 +123,7 @@ public class TelaPrincipal {
         } while (opcao != 0);
     }
 
+    // Pessoas
     private void listarPessoas() {
         System.out.println("\nLista de Pessoas:");
         for (Pessoa pessoa : controleDePessoas.listarPessoas()) {

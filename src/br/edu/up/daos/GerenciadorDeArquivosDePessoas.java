@@ -11,14 +11,14 @@ import java.util.Scanner;
 
 public class GerenciadorDeArquivosDePessoas {
     private String header = "";
-    private static final String CSV_FILE = "src\\br\\edu\\up\\resources\\pessoas.csv";
+    private static final String arquivoCSV = "src\\br\\edu\\up\\resources\\pessoas.csv";
     private static final String DELIMITER = ";";
 
     public List<Pessoa> lerArquivoPessoas() {
         List<Pessoa> pessoas = new ArrayList<>();
 
         try {
-            File arquivoLeitura = new File(CSV_FILE);
+            File arquivoLeitura = new File(arquivoCSV);
             Scanner leitor = new Scanner(arquivoLeitura);
 
             // Armazeno cabeçalho
@@ -42,7 +42,7 @@ public class GerenciadorDeArquivosDePessoas {
 
             leitor.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Arquivo não encontrado! " + e.getMessage());
+            System.out.println("Arquivo não encontrado! ");
         }
 
         return pessoas;
@@ -50,7 +50,7 @@ public class GerenciadorDeArquivosDePessoas {
 
     public boolean gravarArquivoPessoas(List<Pessoa> pessoas) {
         try {
-            FileWriter arquivoGravar = new FileWriter(CSV_FILE);
+            FileWriter arquivoGravar = new FileWriter(arquivoCSV);
             PrintWriter gravador = new PrintWriter(arquivoGravar);
 
             // Gravar cabeçalho
@@ -59,10 +59,12 @@ public class GerenciadorDeArquivosDePessoas {
             for (Pessoa pessoa : pessoas) {
                 if (pessoa instanceof Gerente) {
                     Gerente gerente = (Gerente) pessoa;
-                    gravador.println(String.join(DELIMITER, gerente.getNome(), gerente.getCpf(), gerente.getEmail(), "", "", gerente.getCodigo()));
+                    gravador.println(String.join(DELIMITER, gerente.getNome(), gerente.getCpf(), gerente.getEmail(), "",
+                            "", gerente.getCodigo()));
                 } else if (pessoa instanceof Cliente) {
                     Cliente cliente = (Cliente) pessoa;
-                    gravador.println(String.join(DELIMITER, cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getCelular(), cliente.getDataNasc(), ""));
+                    gravador.println(String.join(DELIMITER, cliente.getNome(), cliente.getCpf(), cliente.getEmail(),
+                            cliente.getCelular(), cliente.getDataNasc(), ""));
                 }
             }
 

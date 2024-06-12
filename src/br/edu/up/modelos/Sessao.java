@@ -1,8 +1,8 @@
 package br.edu.up.modelos;
 
-public class Ingresso {
+public class Sessao {
 
-    private Filme nomeFilme;
+    private String nomeFilme;
     private int sala;
     private String data;
     private String horario;
@@ -10,7 +10,7 @@ public class Ingresso {
     private String audio;
     private String assento;
     
-    public Ingresso(Filme nomeFilme, int sala, String data, String horario, String legenda, String audio, String assento) {
+    public Sessao(String nomeFilme, int sala, String data, String horario, String legenda, String audio, String assento) {
         this.nomeFilme = nomeFilme;
         this.sala = sala;
         this.data = data;
