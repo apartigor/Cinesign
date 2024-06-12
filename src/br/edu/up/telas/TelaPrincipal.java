@@ -8,15 +8,18 @@ package br.edu.up.telas;
 
 import java.util.Scanner;
 
+import br.edu.up.controles.ControleDeCadastroCliente;
 import br.edu.up.controles.ControleDeFilmes;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.modelos.Pessoa;
+import br.edu.up.modelos.Cliente;
 import br.edu.up.modelos.Filme;
 
 public class TelaPrincipal {
     private static final String SENHA_GERENTE = "1234";
     private ControleDePessoas controleDePessoas;
     private ControleDeFilmes controleDeFilmes;
+    private ControleDeCadastroCliente controleDeCadastroCliente;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -46,6 +49,7 @@ public class TelaPrincipal {
                     }
                     break;
                 case 2:
+                    
                     menuPedido(scanner);
                     break;
                 case 0:
@@ -158,5 +162,32 @@ public class TelaPrincipal {
         for (Filme filme : controleDeFilmes.listarFilmes()) {
             System.out.println(filme + "\n");
         }
+    }
+
+    //CADASTRO CLIENTE
+    public void cadastroCliente(){
+
+        
+        System.out.println("-------------------------");
+        System.out.println("CADASTRAR CLIENTE: ");
+        System.out.println("Digite o nome do cliente: ");
+        String nomeCliente = scanner.nextLine();
+
+        System.out.println("Digite o CPF do cliente: ");
+        String cpfCliente = scanner.nextLine();
+
+        System.out.println("Digite o email do cliente: ");
+        String emailCliente = scanner.nextLine();
+
+        System.out.println("Digite o número de celular do cliente: ");
+        String numeroCelularCliente = scanner.nextLine();
+
+        System.out.println("Digite a data de nascimento do cliente: ");
+        String dataNascimentoCliente = scanner.nextLine();
+
+        
+        Cliente objCliente = new Cliente(nomeCliente, cpfCliente, emailCliente, numeroCelularCliente, dataNascimentoCliente);
+
+        controleDeCadastroCliente.adicionarCliente(objCliente);
     }
 }
