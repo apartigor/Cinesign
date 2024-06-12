@@ -11,7 +11,7 @@ public class ControleDePessoas {
 
     public ControleDePessoas() {
         gerenciadorDeArquivos = new GerenciadorDeArquivosDePessoas();
-        pessoas = gerenciadorDeArquivos.lerArquivoCSV();
+        pessoas = gerenciadorDeArquivos.lerArquivoPessoas();
     }
 
     public List<Pessoa> listarPessoas() {
@@ -19,7 +19,7 @@ public class ControleDePessoas {
     }
 
     public void salvarPessoas() {
-        gerenciadorDeArquivos.gravarArquivoCSV(pessoas);
+        gerenciadorDeArquivos.gravarArquivoPessoas(pessoas);
     }
 
     public void adicionarPessoa(Pessoa pessoa) {
