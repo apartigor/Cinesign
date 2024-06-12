@@ -238,9 +238,6 @@ public class TelaPrincipal {
         System.out.println("Digite o idioma do áudio da sessão");
         sessao.setAudio(scanner.nextLine());
 
-        System.out.println("Digite o assento da sessão");
-        sessao.setAssento(scanner.nextLine());
-
         controleDeSessao.adicionarSessao(sessao);
     }
 
