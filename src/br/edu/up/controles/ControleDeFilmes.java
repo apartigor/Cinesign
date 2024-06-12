@@ -32,7 +32,7 @@ public class ControleDeFilmes {
         return null;
     }
 
-    public void excluirFilme(Filme filme){
+    public void excluirFilme(Filme filme) {
         filmes.remove(filme);
     }
 }
