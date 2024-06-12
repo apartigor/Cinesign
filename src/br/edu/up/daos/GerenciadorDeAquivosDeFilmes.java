@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+//import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import br.edu.up.modelos.Filme;
@@ -20,7 +20,7 @@ public class GerenciadorDeAquivosDeFilmes {
 
             boolean arquivoExiste = new File(nomeArquivo).exists();
 
-            FileWriter escritor = new FileWriter(nomeArquivo, StandardCharsets.ISO_8859_1, true);
+            FileWriter escritor = new FileWriter(nomeArquivo, true);
 
             if (!arquivoExiste) {
                 escritor.write("Codigo;Nome;Genero;Distribuidora\n");
