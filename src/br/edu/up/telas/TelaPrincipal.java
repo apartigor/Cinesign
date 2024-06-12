@@ -118,7 +118,7 @@ public class TelaPrincipal {
 
             switch (opcao) {
                 case 1:
-                    listarFilmes();
+                    menuFilme();
                     // Menu de selecionar o filme pelo código -> listar sessões -> fazer o pedido
                     break;
                 default:
@@ -162,6 +162,17 @@ public class TelaPrincipal {
         for (Filme filme : controleDeFilmes.listarFilmes()) {
             System.out.println(filme + "\n");
         }
+    }
+
+    private void menuFilme() {
+        listarFilmes();
+            System.out.println("Digite o código do filme: ");
+            String codigoFilme = scanner.nextLine();
+            for(Filme filme : controleDeFilmes.listarFilmes()){
+                if(codigoFilme.equals(filme.getCodFilme())){
+                    //Menu da sessão
+                }
+            }
     }
 
     //CADASTRO CLIENTE
