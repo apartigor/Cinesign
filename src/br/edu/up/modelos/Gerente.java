@@ -18,6 +18,6 @@ public class Gerente extends Pessoa {
 
     @Override
     public String toString() {
-        return "Gerente [nome=" + nome + ", cpf=" + cpf + ", codigo=" + codigo + "]";
+        return "Gerente \nNome: " + nome + ", CPF: " + cpf + ", Código Gerente: " + codigo + "";
     }
 }

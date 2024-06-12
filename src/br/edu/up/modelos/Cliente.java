@@ -20,7 +20,7 @@ public class Cliente extends Pessoa {
 
     @Override
     public String toString() {
-        return "Cliente [nome= " + nome + ", cpf=" + cpf + ", celular=" + celular + " dataNasc=" + dataNasc + ", email="
-                + email + "]";
+        return "Cliente \nNome: " + nome + ", CPF: " + cpf + ", Número Celular: " + celular + " Data de Nascimento: " + dataNasc + ", Email: "
+                + email + "";
     }
 }
