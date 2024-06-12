@@ -12,6 +12,7 @@ import br.edu.up.controles.ControleDeCadastroCliente;
 import br.edu.up.controles.ControleDeFilmes;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
+import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
 import br.edu.up.modelos.Pessoa;
 import br.edu.up.modelos.Cliente;
 import br.edu.up.modelos.Filme;
@@ -159,6 +160,8 @@ public class TelaPrincipal {
         filme.setDistribuidora(scanner.nextLine());
 
         controleDeFilmes.adicionarFilme(filme);
+
+        GerenciadorDeAquivosDeFilmes.salvarFilme(filme);
     }
 
     public void listarFilmes() {
@@ -166,6 +169,7 @@ public class TelaPrincipal {
         for (Filme filme : controleDeFilmes.listarFilmes()) {
             System.out.println(filme + "\n");
         }
+        GerenciadorDeAquivosDeFilmes.listaFilmesCsv();
     }
 
     private void selecionarFilme() {
