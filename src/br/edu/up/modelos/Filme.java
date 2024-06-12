@@ -1,7 +1,6 @@
 package br.edu.up.modelos;
 
 public class Filme {
-    private int codGerente;
     private String codFilme;
     private String nomeFilme;
     private String generoFilme;
@@ -11,20 +10,11 @@ public class Filme {
 
     }
 
-    public Filme(int codGerente, String codFilme, String nomeFilme, String generoFilme, String distribuidora) {
-        this.codGerente = codGerente;
+    public Filme(String codFilme, String nomeFilme, String generoFilme, String distribuidora) {
         this.codFilme = codFilme;
         this.nomeFilme = nomeFilme;
         this.generoFilme = generoFilme;
         this.distribuidora = distribuidora;
-    }
-
-    public int getCodGerente() {
-        return codGerente;
-    }
-
-    public void setCodGerente(int codGerente) {
-        this.codGerente = codGerente;
     }
 
     public String getCodFilme() {
