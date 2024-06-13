@@ -13,6 +13,7 @@ import br.edu.up.controles.ControleDePedidos;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
 import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
+import br.edu.up.daos.GerenciadorDeArquivosDeClientes;
 import br.edu.up.daos.GerenciadorDeArquivosDePedidos;
 import br.edu.up.daos.GerenciadorDeArquivosDeSessoes;
 import br.edu.up.modelos.Cliente;
@@ -357,7 +358,7 @@ Cliente objCliente = new Cliente();
 
 
 System.out.println("-------------------------");
-System.out.println("Castrar Cliente: ");
+System.out.println("Cadastrar Cliente: ");
 System.out.println("Digite o nome do cliente: ");
 objCliente.setNome(scanner.nextLine());
 
@@ -375,6 +376,8 @@ objCliente.setDataNasc(scanner.nextLine());
 
 
 controleDeCadastroCliente.adicionarCliente(objCliente);
+
+GerenciadorDeArquivosDeClientes.salvarCliente(objCliente);
 }
 
 public void listarClientes(){
@@ -385,6 +388,7 @@ public void listarClientes(){
         System.out.println(cliente + "\n");
     }
 
+    GerenciadorDeArquivosDeClientes.listarClientesCsv();
+    
     }
-
 }
