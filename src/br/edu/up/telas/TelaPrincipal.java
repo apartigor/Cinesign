@@ -7,29 +7,28 @@ package br.edu.up.telas;
 // Igor Viana: Classe Pessoa e Cliente
 // Nicolas: TelaPrincipal e Classe Gerente
 
-import java.util.Scanner;
-
 import br.edu.up.controles.ControleDeCadastroCliente;
 import br.edu.up.controles.ControleDeFilmes;
+import br.edu.up.controles.ControleDePedidos;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
-import br.edu.up.controles.ControleDePedidos;
 import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
 import br.edu.up.daos.GerenciadorDeArquivosDePedidos;
 import br.edu.up.daos.GerenciadorDeArquivosDeSessoes;
-import br.edu.up.modelos.Pessoa;
 import br.edu.up.modelos.Cliente;
 import br.edu.up.modelos.Filme;
-import br.edu.up.modelos.Sessao;
 import br.edu.up.modelos.Pedido;
+import br.edu.up.modelos.Pessoa;
+import br.edu.up.modelos.Sessao;
+import java.util.Scanner;
 
 public class TelaPrincipal {
     private static final String SENHA_GERENTE = "1234";
-    private ControleDePessoas controleDePessoas;
-    private ControleDeFilmes controleDeFilmes;
+    private final ControleDePessoas controleDePessoas;
+    private final ControleDeFilmes controleDeFilmes;
     private ControleDeCadastroCliente controleDeCadastroCliente;
-    private ControleDeSessao controleDeSessao = new ControleDeSessao();
-    private ControleDePedidos controleDePedidos = new ControleDePedidos();
+    private final ControleDeSessao controleDeSessao = new ControleDeSessao();
+    private final ControleDePedidos controleDePedidos = new ControleDePedidos();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -123,6 +122,9 @@ public class TelaPrincipal {
                 case 4:
                     listarPedidos();
                     break;
+                case 0:
+                    System.out.println("Voltando...");
+                break;
                 default:
                     System.out.println("Opção inválida!");
                     break;
@@ -148,7 +150,10 @@ public class TelaPrincipal {
                     break;
                 case 2:
                     listarFilmes();
-                    break;    
+                    break;
+                case 0:
+                    System.out.println("Voltando...");
+                break;    
                 default:
                     System.out.println("Opção inválida!");
                     break;
@@ -202,10 +207,9 @@ public class TelaPrincipal {
         String codigoSessao = scanner.nextLine();
             for(Sessao sessao : controleDeSessao.listarSessao()){
                 if(codigoSessao.equals(sessao.getCodigoSessao())){
-                    System.out.println("Pedidio feito");
                     Pedido pedido = new Pedido();
                     pedido.setCodigo(codigoSessao);
-                    if(sessao.getAudio() != "portugues"){
+                    if(!"portugues".equals(sessao.getAudio())){
                         pedido.setValorTotal("25.00");
                     }else{
                         pedido.setValorTotal("30.00");
@@ -215,23 +219,24 @@ public class TelaPrincipal {
                     System.out.println("2. Débito");
                     System.out.println("3. Pix");
                     int opcao = scanner.nextInt();
-
+                    
                     switch (opcao) {
                         case 1:
-                            pedido.setTipoPagamento("Credito");
-                            break;
+                        pedido.setTipoPagamento("Credito");
+                        break;
                         case 2:
-                            pedido.setTipoPagamento("Debito");
-                            break;
+                        pedido.setTipoPagamento("Debito");
+                        break;
                         case 3:
-                            pedido.setTipoPagamento("Pix");
-                            break;
+                        pedido.setTipoPagamento("Pix");
+                        break;
                         default:
-                            System.out.println("Opção inválida!");
-                            break;
+                        System.out.println("Opção inválida!");
+                        break;
                     }
                     controleDePedidos.adicionarpedido(pedido);
                     GerenciadorDeArquivosDePedidos.salvarPedido(pedido);
+                    System.out.println("Pedido feito!");
                 }
             }
     }
