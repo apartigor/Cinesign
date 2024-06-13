@@ -1,13 +1,12 @@
 package br.edu.up.daos;
 
+import br.edu.up.modelos.Sessao;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import br.edu.up.modelos.Sessao;
 
 public class GerenciadorDeArquivosDeSessoes {
 
@@ -78,5 +77,9 @@ public class GerenciadorDeArquivosDeSessoes {
         }
 
         return listaSessao;
+    }
+
+    public static String getNomeArquivo() {
+        return nomeArquivo;
     }
 }

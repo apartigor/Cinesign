@@ -1,12 +1,11 @@
 package br.edu.up.controles;
+import br.edu.up.modelos.Pedido;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.up.modelos.Pedido;
-
 public class ControleDePedidos {
 
-    private List<Pedido> pedidos = new ArrayList<>();
+    private final List<Pedido> pedidos = new ArrayList<>();
 
     
     public List<Pedido> listarPedidos(){

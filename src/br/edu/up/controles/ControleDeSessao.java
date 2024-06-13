@@ -1,11 +1,11 @@
 package br.edu.up.controles;
 import br.edu.up.modelos.Sessao;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ControleDeSessao {
     
-    private List<Sessao> sessoes = new ArrayList<>();
+    private final List<Sessao> sessoes = new ArrayList<>();
 
     
     public List<Sessao> listarSessao(){

@@ -7,29 +7,28 @@ package br.edu.up.telas;
 // Igor Viana: Classe Pessoa e Cliente
 // Nicolas: TelaPrincipal e Classe Gerente
 
-import java.util.Scanner;
-
 import br.edu.up.controles.ControleDeCadastroCliente;
 import br.edu.up.controles.ControleDeFilmes;
+import br.edu.up.controles.ControleDePedidos;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
-import br.edu.up.controles.ControleDePedidos;
 import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
 import br.edu.up.daos.GerenciadorDeArquivosDePedidos;
 import br.edu.up.daos.GerenciadorDeArquivosDeSessoes;
-import br.edu.up.modelos.Pessoa;
 import br.edu.up.modelos.Cliente;
 import br.edu.up.modelos.Filme;
-import br.edu.up.modelos.Sessao;
 import br.edu.up.modelos.Pedido;
+import br.edu.up.modelos.Pessoa;
+import br.edu.up.modelos.Sessao;
+import java.util.Scanner;
 
 public class TelaPrincipal {
     private static final String SENHA_GERENTE = "1234";
-    private ControleDePessoas controleDePessoas;
-    private ControleDeFilmes controleDeFilmes;
-    private ControleDeCadastroCliente controleDeCadastroCliente = new ControleDeCadastroCliente();
-    private ControleDeSessao controleDeSessao = new ControleDeSessao();
-    private ControleDePedidos controleDePedidos = new ControleDePedidos();
+    private final ControleDePessoas controleDePessoas;
+    private final ControleDeFilmes controleDeFilmes;
+    private final ControleDeCadastroCliente controleDeCadastroCliente = new ControleDeCadastroCliente();
+    private final ControleDeSessao controleDeSessao = new ControleDeSessao();
+    private final ControleDePedidos controleDePedidos = new ControleDePedidos();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -131,7 +130,7 @@ public class TelaPrincipal {
 
             switch (opcao) {
                 case 1:
-                    String opt = "";
+                    String opt;
                     do {
                         cadastroDeFilmes();
                         System.out.println("\nFilme cadastrado com sucesso!!");
@@ -144,7 +143,7 @@ public class TelaPrincipal {
                     listarFilmes();
                     break;
                 case 2:
-                    String opc = "";
+                    String opc;
                     do {
                         cadastrarSessao();
                         System.out.println("\nSessão cadastrada com sucesso!!");
@@ -160,6 +159,9 @@ public class TelaPrincipal {
                 case 4:
                     listarPedidos();
                     break;
+                case 0:
+                    System.out.println("Voltando...");
+                break;
                 default:
                     System.out.println("Opção inválida!");
                     break;
@@ -185,7 +187,10 @@ public class TelaPrincipal {
                     break;
                 case 2:
                     listarFilmes();
-                    break;    
+                    break;
+                case 0:
+                    System.out.println("Voltando...");
+                break;    
                 default:
                     System.out.println("Opção inválida!");
                     break;
@@ -237,40 +242,40 @@ public void listarFilmes() {
         listarSessoes();
         System.out.println("Digite o código da sessão que deseja fazer o pedido: ");
         String codigoSessao = scanner.nextLine();
-        for(Sessao sessao : controleDeSessao.listarSessao()){
-            if(codigoSessao.equals(sessao.getCodigoSessao())){
-                System.out.println("Pedidio feito");
-                Pedido pedido = new Pedido();
-                pedido.setCodigo(codigoSessao);
-                if(sessao.getAudio() != "portugues"){
-                    pedido.setValorTotal("25.00");
+            for(Sessao sessao : controleDeSessao.listarSessao()){
+                if(codigoSessao.equals(sessao.getCodigoSessao())){
+                    System.out.println("Pedidio feito");
+                    Pedido pedido = new Pedido();
+                    pedido.setCodigo(codigoSessao);
+                    if(sessao.getAudio() != "portugues"){
+                        pedido.setValorTotal("25.00");
                     }else{
                         pedido.setValorTotal("30.00");
-                        }
-                        System.out.println("Esolha o tipo de pagamento: ");
-                        System.out.println("1. Crédito");
-                        System.out.println("2. Débito");
-                        System.out.println("3. Pix");
-                        int opcao = scanner.nextInt();
-                        
-                        switch (opcao) {
-                            case 1:
+                    }
+                    System.out.println("Esolha o tipo de pagamento: ");
+                    System.out.println("1. Crédito");
+                    System.out.println("2. Débito");
+                    System.out.println("3. Pix");
+                    int opcao = scanner.nextInt();
+
+                    switch (opcao) {
+                        case 1:
                             pedido.setTipoPagamento("Credito");
                             break;
-                            case 2:
+                        case 2:
                             pedido.setTipoPagamento("Debito");
                             break;
-                            case 3:
+                        case 3:
                             pedido.setTipoPagamento("Pix");
                             break;
-                            default:
+                        default:
                             System.out.println("Opção inválida!");
                             break;
-                            }
-                            controleDePedidos.adicionarpedido(pedido);
-                            GerenciadorDeArquivosDePedidos.salvarPedido(pedido);
+                    }
+                    controleDePedidos.adicionarpedido(pedido);
+                    GerenciadorDeArquivosDePedidos.salvarPedido(pedido);
+                }
             }
-        }
     }
                             
 private void cadastrarSessao() {
