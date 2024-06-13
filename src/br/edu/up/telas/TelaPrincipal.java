@@ -93,7 +93,7 @@ public class TelaPrincipal {
 
             switch (opcao) {
                 case 1:
-                    String opt = "";
+                    String opt;
                     do {
                         cadastroDeFilmes();
                         System.out.println("\nFilme cadastrado com sucesso!!");
@@ -106,7 +106,7 @@ public class TelaPrincipal {
                     listarFilmes();
                     break;
                 case 2:
-                    String opc = "";
+                    String opc;
                     do {
                         cadastrarSessao();
                         System.out.println("\nSessão cadastrada com sucesso!!");
