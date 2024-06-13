@@ -25,7 +25,7 @@ public class GerenciadorDeArquivosDeSessoes {
                 escritor.write("codigo;nomeFilme;sala;data;horario;legenda;audio\n");
             }
 
-            escritor.write(sessao.getCodigoSessao() + ";" + sessao.getNomeFilme() + ";" + sessao.getNomeFilme() + ";" + sessao.getSala() + ";" + sessao.getData() + ";" + sessao.getHorario() + ";"
+            escritor.write(sessao.getCodigoSessao() + ";" + sessao.getNomeFilme() + ";" + sessao.getSala() + ";" + sessao.getData() + ";" + sessao.getHorario() + ";"
                     + sessao.getLegenda() + ";" + sessao.getAudio() + "\n");
 
             escritor.flush();
@@ -67,8 +67,8 @@ public class GerenciadorDeArquivosDeSessoes {
 
                 listaSessao.add(sessao);
 
-                System.out.println("Nome Filme: " + nomeFilme + " - Sala: " + sala + " - Data: " + data
-                        + " - Horário: " + horario);
+                System.out.println("Codigo Sessão: " + codigo + " - Nome Filme: " + nomeFilme + " - Sala: " + sala + " - Data: " + data
+                        + " - Horário: " + horario + " - Legenda: " + legenda + " - Áudio: " + audio);
             }
 
             leitor.close();

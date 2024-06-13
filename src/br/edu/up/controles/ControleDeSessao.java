@@ -7,18 +7,19 @@ import java.util.ArrayList;
 public class ControleDeSessao {
     
     private List<Sessao> sessoes = new ArrayList<>();
-    private Pedido pedido;
+    private Pedido pedido = new Pedido();
 
-    public void adicionarSessao(Sessao sessao){
-        sessoes.add(sessao);
-    }
-
+    
     public List<Sessao> listarSessao(){
         return sessoes;
-    }
-
+        }
+        
     public void salvarFilmes(){
-
+         
+    }
+        
+    public void adicionarSessao(Sessao objSessao){
+        sessoes.add(objSessao);
     }
 
     public void excluirSessao(String codigo){

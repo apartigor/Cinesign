@@ -1,7 +1,8 @@
 package br.edu.up.telas;
 
+
 // Tobias: Classe Pedido
-// Gui: Classe Ingresso
+// Gui: Classe Sessao
 // Igor Hey: Classe Filme
 // Igor Viana: Classe Pessoa e Cliente
 // Nicolas: TelaPrincipal e Classe Gerente
@@ -24,7 +25,7 @@ public class TelaPrincipal {
     private ControleDePessoas controleDePessoas;
     private ControleDeFilmes controleDeFilmes;
     private ControleDeCadastroCliente controleDeCadastroCliente;
-    private ControleDeSessao controleDeSessao;
+    private ControleDeSessao controleDeSessao = new ControleDeSessao();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -124,7 +125,7 @@ public class TelaPrincipal {
 
             switch (opcao) {
                 case 1:
-                    selecionarFilme();
+                    selecionarSessao();
                     // Menu de selecionar o filme pelo código -> listar sessões -> fazer o pedido
                     break;
                 default:
@@ -173,12 +174,13 @@ public class TelaPrincipal {
         GerenciadorDeAquivosDeFilmes.listaFilmesCsv();
     }
 
-    private void selecionarFilme() {
-        controleDeSessao.listarSessao();
-            System.out.println("Digite o código da sessão: ");
-            String codigoSessao = scanner.nextLine();
+    private void selecionarSessao() {
+        listarSessoes();
+        System.out.println("Digite o código da sessão que deseja fazer o pedido: ");
+        String codigoSessao = scanner.nextLine();
             for(Sessao sessao : controleDeSessao.listarSessao()){
                 if(codigoSessao.equals(sessao.getCodigoSessao())){
+                    System.out.println("Pedidio feito");
                     menuSessao();
                 }
             }
@@ -198,7 +200,7 @@ public class TelaPrincipal {
 
         switch (opcao) {
             case 0:
-                selecionarFilme();
+                selecionarSessao();
                 break;
             case 1:
                 System.out.println("Digite o código da sessão que deseja adicionar: ");
@@ -222,22 +224,22 @@ public class TelaPrincipal {
         
         System.out.println("Digite o código da sessão: ");
         sessao.setCodigoSessao(scanner.nextLine());
-
+        
         System.out.println("Digite o nome do filme: ");
-        sessao.setAudio(scanner.nextLine());
-
+        sessao.setNomeFilme(scanner.nextLine());
+        
         System.out.println("Digite a sala da sessão: ");
         sessao.setSala(scanner.nextLine());
-
+        
         System.out.println("Digite a data da sessão: ");
         sessao.setData(scanner.nextLine());
-
+        
         System.out.println("Digite o horário da sessão: ");
         sessao.setHorario(scanner.nextLine());
-
+        
         System.out.println("Digite o idioma da legenda da sessão: ");
         sessao.setLegenda(scanner.nextLine());
-
+        
         System.out.println("Digite o idioma do áudio da sessão: ");
         sessao.setAudio(scanner.nextLine());
 
@@ -245,7 +247,7 @@ public class TelaPrincipal {
 
         GerenciadorDeArquivosDeSessoes.salvarSessao(sessao);
     }
-
+    
     public void listarSessoes() {
         System.out.println("\nLista de Sessões: ");
         for (Sessao sessao : controleDeSessao.listarSessao()) {
