@@ -13,6 +13,7 @@ import br.edu.up.controles.ControleDePedidos;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
 import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
+import br.edu.up.daos.GerenciadorDeArquivosDeClientes;
 import br.edu.up.daos.GerenciadorDeArquivosDePedidos;
 import br.edu.up.daos.GerenciadorDeArquivosDePessoas;
 import br.edu.up.daos.GerenciadorDeArquivosDeSessoes;
@@ -420,6 +421,8 @@ public class TelaPrincipal {
         objCliente.setDataNasc(scanner.nextLine());
 
         controleDeCadastroCliente.adicionarCliente(objCliente);
+
+        GerenciadorDeArquivosDeClientes.salvarCliente(objCliente);
     }
 
     public void listarClientes() {
@@ -429,6 +432,8 @@ public class TelaPrincipal {
         for (Cliente cliente : controleDeCadastroCliente.listarClientes()) {
             System.out.println(cliente + "\n");
         }
+
+        GerenciadorDeArquivosDeClientes.listarClientesCsv();
 
     }
 }
