@@ -13,7 +13,6 @@ import br.edu.up.controles.ControleDePedidos;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
 import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
-import br.edu.up.daos.GerenciadorDeArquivosDeClientes;
 import br.edu.up.daos.GerenciadorDeArquivosDePedidos;
 import br.edu.up.daos.GerenciadorDeArquivosDePessoas;
 import br.edu.up.daos.GerenciadorDeArquivosDeSessoes;
@@ -403,10 +402,10 @@ public class TelaPrincipal {
 
         Cliente objCliente = new Cliente();
 
-System.out.println("-------------------------");
-System.out.println("Castrar Cliente: ");
-System.out.println("Digite o nome do cliente: ");
-objCliente.setNome(scanner.nextLine());
+        System.out.println("-------------------------");
+        System.out.println("Castrar Cliente: ");
+        System.out.println("Digite o nome do cliente: ");
+        objCliente.setNome(scanner.nextLine());
 
         System.out.println("Digite o CPF do cliente: ");
         objCliente.setCpf(scanner.nextLine());
@@ -420,16 +419,16 @@ objCliente.setNome(scanner.nextLine());
         System.out.println("Digite a data de nascimento do cliente: ");
         objCliente.setDataNasc(scanner.nextLine());
 
-controleDeCadastroCliente.adicionarCliente(objCliente);
-}
-
-public void listarClientes(){
-    
-    System.out.println("--------------------");
-    System.out.println("\nLista de Clientes: ");
-    for (Cliente cliente : controleDeCadastroCliente.listarClientes()) {
-        System.out.println(cliente + "\n");
+        controleDeCadastroCliente.adicionarCliente(objCliente);
     }
+
+    public void listarClientes() {
+
+        System.out.println("--------------------");
+        System.out.println("\nLista de Clientes: ");
+        for (Cliente cliente : controleDeCadastroCliente.listarClientes()) {
+            System.out.println(cliente + "\n");
+        }
 
     }
 }
