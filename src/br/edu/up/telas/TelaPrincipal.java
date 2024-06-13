@@ -1,6 +1,6 @@
 package br.edu.up.telas;
 
-
+// Rafael: CLasse Cadastro e CLiente
 // Tobias: Classe Pedido
 // Gui: Classe Sessao
 // Igor Hey: Classe Filme
@@ -27,7 +27,7 @@ public class TelaPrincipal {
     private static final String SENHA_GERENTE = "1234";
     private ControleDePessoas controleDePessoas;
     private ControleDeFilmes controleDeFilmes;
-    private ControleDeCadastroCliente controleDeCadastroCliente;
+    private ControleDeCadastroCliente controleDeCadastroCliente = new ControleDeCadastroCliente();
     private ControleDeSessao controleDeSessao = new ControleDeSessao();
     private ControleDePedidos controleDePedidos = new ControleDePedidos();
 
@@ -42,41 +42,78 @@ public class TelaPrincipal {
         int opcao;
 
         do {
+
+            System.out.println("---------------------");
             System.out.println("Menu Principal");
             System.out.println("1. Gerente");
             System.out.println("2. Clientes");
             System.out.println("0. Sair");
+            System.out.println("---------------------");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
-
+            
             switch (opcao) {
                 case 1:
-                    if (verificarSenha(scanner)) {
-                        menuGerente(scanner);
+                if (verificarSenha(scanner)) {
+                    menuGerente(scanner);
                     } else {
                         System.out.println("Senha incorreta!");
                     }
                     break;
-                case 2:
+                    case 2:
                     
-                    menuPedido(scanner);
-                    break;
-                case 0:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
-                    break;
-            }
-        } while (opcao != 0);
-
-    }
-
-    private boolean verificarSenha(Scanner scanner) {
-        System.out.print("Digite a senha para acessar o menu do gerente: ");
-        String senha = scanner.nextLine();
-        return SENHA_GERENTE.equals(senha);
+                    System.out.println("--------------------");
+                    System.out.println("Menu Cliente");
+                    System.out.println("1. Cadastrar");
+                    System.out.println("2. Sessão");
+                    System.out.println("3. Listar");
+                    System.out.println("0. Sair");
+                    System.out.println("---------------------");
+                    System.out.print("Escolha uma opção: ");
+                    
+                    int valor = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    switch (valor) {
+                        case 1:
+                        
+                        cadastroCliente();
+                        
+                        break;
+                        case 2:
+                        
+                        menuPedido(scanner);
+                        
+                        break;
+                        case 3:
+                        
+                        listarClientes();
+                        
+                        break;
+                        case 0:
+                        
+                        break;
+                        }
+                        
+                        
+                        break;
+                        case 0:
+                        System.out.println("Saindo...");
+                        break;
+                        default:
+                        System.out.println("Opção inválida!");
+                        break;
+                        }
+                        } while (opcao != 0);
+                        
+                        }
+                        
+                        private boolean verificarSenha(Scanner scanner) {
+                            System.out.print("Digite a senha para acessar o menu do gerente: ");
+                            String senha = scanner.nextLine();
+                            return SENHA_GERENTE.equals(senha);
+                            
     }
 
     private void menuGerente(Scanner scanner) {
@@ -115,7 +152,7 @@ public class TelaPrincipal {
                         System.out.println("\nSim (S) / Não (N)");
                         System.out.print("\nDigite a opção desejada: ");
                         opc = scanner.nextLine();
-                    } while (opc.equals("S") || opc.equals("Sim") || opc.equals("sim"));
+                    } while (opc.equals("S") || opc.equals("Sim") || opc.equals("sim") || (opc.equals("s")));
                     break;
                 case 3:
                     listarPessoas();
@@ -188,127 +225,137 @@ public class TelaPrincipal {
         GerenciadorDeAquivosDeFilmes.salvarFilme(filme);
     }
 
-    public void listarFilmes() {
-        System.out.println("\nLista de Filmes: ");
-        for (Filme filme : controleDeFilmes.listarFilmes()) {
-            System.out.println(filme + "\n");
-        }
-        GerenciadorDeAquivosDeFilmes.listaFilmesCsv();
+public void listarFilmes() {
+    System.out.println("\nLista de Filmes: ");
+    for (Filme filme : controleDeFilmes.listarFilmes()) {
+        System.out.println(filme + "\n");
     }
-
+    GerenciadorDeAquivosDeFilmes.listaFilmesCsv();
+    }
+    
     private void selecionarSessao() {
         listarSessoes();
         System.out.println("Digite o código da sessão que deseja fazer o pedido: ");
         String codigoSessao = scanner.nextLine();
-            for(Sessao sessao : controleDeSessao.listarSessao()){
-                if(codigoSessao.equals(sessao.getCodigoSessao())){
-                    System.out.println("Pedidio feito");
-                    Pedido pedido = new Pedido();
-                    pedido.setCodigo(codigoSessao);
-                    if(sessao.getAudio() != "portugues"){
-                        pedido.setValorTotal("25.00");
+        for(Sessao sessao : controleDeSessao.listarSessao()){
+            if(codigoSessao.equals(sessao.getCodigoSessao())){
+                System.out.println("Pedidio feito");
+                Pedido pedido = new Pedido();
+                pedido.setCodigo(codigoSessao);
+                if(sessao.getAudio() != "portugues"){
+                    pedido.setValorTotal("25.00");
                     }else{
                         pedido.setValorTotal("30.00");
-                    }
-                    System.out.println("Esolha o tipo de pagamento: ");
-                    System.out.println("1. Crédito");
-                    System.out.println("2. Débito");
-                    System.out.println("3. Pix");
-                    int opcao = scanner.nextInt();
-
-                    switch (opcao) {
-                        case 1:
+                        }
+                        System.out.println("Esolha o tipo de pagamento: ");
+                        System.out.println("1. Crédito");
+                        System.out.println("2. Débito");
+                        System.out.println("3. Pix");
+                        int opcao = scanner.nextInt();
+                        
+                        switch (opcao) {
+                            case 1:
                             pedido.setTipoPagamento("Credito");
                             break;
-                        case 2:
+                            case 2:
                             pedido.setTipoPagamento("Debito");
                             break;
-                        case 3:
+                            case 3:
                             pedido.setTipoPagamento("Pix");
                             break;
-                        default:
+                            default:
                             System.out.println("Opção inválida!");
                             break;
-                    }
-                    controleDePedidos.adicionarpedido(pedido);
-                    GerenciadorDeArquivosDePedidos.salvarPedido(pedido);
-                }
+                            }
+                            controleDePedidos.adicionarpedido(pedido);
+                            GerenciadorDeArquivosDePedidos.salvarPedido(pedido);
             }
+        }
     }
-
-
-    private void cadastrarSessao() {
-
-        Sessao sessao = new Sessao();
-
-        System.out.println("\nCadastro de Sessão");
-        
-        System.out.println("Digite o código da sessão: ");
-        sessao.setCodigoSessao(scanner.nextLine());
-        
-        System.out.println("Digite o nome do filme: ");
-        sessao.setNomeFilme(scanner.nextLine());
-        
-        System.out.println("Digite a sala da sessão: ");
-        sessao.setSala(scanner.nextLine());
-        
-        System.out.println("Digite a data da sessão: ");
-        sessao.setData(scanner.nextLine());
-        
-        System.out.println("Digite o horário da sessão: ");
-        sessao.setHorario(scanner.nextLine());
-        
-        System.out.println("Digite o idioma da legenda da sessão: ");
-        sessao.setLegenda(scanner.nextLine());
-        
-        System.out.println("Digite o idioma do áudio da sessão: ");
-        sessao.setAudio(scanner.nextLine());
-
-        controleDeSessao.adicionarSessao(sessao);
-
-        GerenciadorDeArquivosDeSessoes.salvarSessao(sessao);
-    }
+                            
+private void cadastrarSessao() {
     
-    public void listarSessoes() {
-        System.out.println("\nLista de Sessões: ");
-        for (Sessao sessao : controleDeSessao.listarSessao()) {
-            System.out.println(sessao + "\n");
+    Sessao sessao = new Sessao();
+    
+    System.out.println("\nCadastro de Sessão");
+    
+    System.out.println("Digite o código da sessão: ");
+    sessao.setCodigoSessao(scanner.nextLine());
+    
+    System.out.println("Digite o nome do filme: ");
+    sessao.setNomeFilme(scanner.nextLine());
+    
+    System.out.println("Digite a sala da sessão: ");
+    sessao.setSala(scanner.nextLine());
+
+    System.out.println("Digite a data da sessão: ");
+    sessao.setData(scanner.nextLine());
+    
+    System.out.println("Digite o horário da sessão: ");
+    sessao.setHorario(scanner.nextLine());
+    
+    System.out.println("Digite o idioma da legenda da sessão: ");
+    sessao.setLegenda(scanner.nextLine());
+    
+    System.out.println("Digite o idioma do áudio da sessão: ");
+    sessao.setAudio(scanner.nextLine());
+    
+    controleDeSessao.adicionarSessao(sessao);
+                        
+    GerenciadorDeArquivosDeSessoes.salvarSessao(sessao);
+}
+
+public void listarSessoes() {
+    System.out.println("\nLista de Sessões: ");
+    for (Sessao sessao : controleDeSessao.listarSessao()) {
+        System.out.println(sessao + "\n");
         }
         GerenciadorDeArquivosDeSessoes.listaSessoesCsv();
-    }
-
-    public void listarPedidos() {
-        System.out.println("\nLista de Pedidos: ");
-        for (Pedido pedido : controleDePedidos.listarPedidos()) {
-            System.out.println(pedido + "\n");
         }
-        GerenciadorDeArquivosDePedidos.listaPedidosCsv();
+        
+        public void listarPedidos() {
+            System.out.println("\nLista de Pedidos: ");
+            for (Pedido pedido : controleDePedidos.listarPedidos()) {
+                System.out.println(pedido + "\n");
+                }
+                GerenciadorDeArquivosDePedidos.listaPedidosCsv();
+                }
+                
+//CADASTRO CLIENTE
+public void cadastroCliente(){
+
+Cliente objCliente = new Cliente();
+
+
+System.out.println("-------------------------");
+System.out.println("CADASTRAR CLIENTE: ");
+System.out.println("Digite o nome do cliente: ");
+objCliente.setNome(scanner.nextLine());
+
+System.out.println("Digite o CPF do cliente: ");
+objCliente.setCpf(scanner.nextLine());
+
+System.out.println("Digite o email do cliente: ");
+objCliente.setEmail(scanner.nextLine());
+
+System.out.println("Digite o número de celular do cliente: ");
+objCliente.setCelular(scanner.nextLine());
+
+System.out.println("Digite a data de nascimento do cliente: ");
+objCliente.setDataNasc(scanner.nextLine());
+
+
+controleDeCadastroCliente.adicionarCliente(objCliente);
+}
+
+public void listarClientes(){
+    
+    System.out.println("--------------------");
+    System.out.println("\nLista de Clientes: ");
+    for (Cliente cliente : controleDeCadastroCliente.listarClientes()) {
+        System.out.println(cliente + "\n");
     }
 
-    //CADASTRO CLIENTE
-    public void cadastroCliente(){
-
-        
-        System.out.println("-------------------------");
-        System.out.println("CADASTRAR CLIENTE: ");
-        System.out.println("Digite o nome do cliente: ");
-        String nomeCliente = scanner.nextLine();
-
-        System.out.println("Digite o CPF do cliente: ");
-        String cpfCliente = scanner.nextLine();
-
-        System.out.println("Digite o email do cliente: ");
-        String emailCliente = scanner.nextLine();
-
-        System.out.println("Digite o número de celular do cliente: ");
-        String numeroCelularCliente = scanner.nextLine();
-
-        System.out.println("Digite a data de nascimento do cliente: ");
-        String dataNascimentoCliente = scanner.nextLine();
-
-        
-        Cliente objCliente = new Cliente(nomeCliente, cpfCliente, emailCliente, numeroCelularCliente, dataNascimentoCliente);
-
-        controleDeCadastroCliente.adicionarCliente(objCliente);
     }
+
 }

@@ -15,12 +15,9 @@ public class ControleDeCadastroCliente {
         return clientes;
     }
 
-    public void adicionarCliente(Cliente objCliente){
+    public void adicionarCliente(Cliente cliente){
 
-        clientes.add(objCliente);
+        clientes.add(cliente);
     }
 
-    
-
-    
 }

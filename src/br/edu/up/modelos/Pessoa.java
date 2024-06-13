@@ -5,6 +5,10 @@ public abstract class Pessoa {
     protected String nome;
     protected String email;
 
+    public Pessoa(){
+
+    }
+    
     public Pessoa(String cpf, String nome, String email) {
         this.cpf = cpf;
         this.nome = nome;
@@ -22,5 +26,19 @@ public abstract class Pessoa {
     public String getEmail() {
         return email;
     }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
 
 }
