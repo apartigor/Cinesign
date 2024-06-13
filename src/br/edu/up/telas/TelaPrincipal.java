@@ -148,7 +148,7 @@ public class TelaPrincipal {
                         System.out.print("\nDigite a opção desejada: ");
                         opt = scanner.nextLine();
 
-                    } while (opt.equals("S") || opt.equals("Sim") || opt.equals("sim"));
+                    } while (opt.equals("S") || opt.equals("Sim") || opt.equals("sim") || (opt.equals("s")));
                     listarFilmes();
                     break;
                 case 2:
