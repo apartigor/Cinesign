@@ -127,7 +127,7 @@ public class TelaPrincipal {
             System.out.println("\nMenu Gerente");
             System.out.println("1. Cadastrar Filmes");
             System.out.println("2. Cadastrar Sessão");
-            System.out.println("3. Cadastrar Pessoa");
+            System.out.println("3. Cadastrar Gerente");
             System.out.println("4. Listar Pessoas Cadastradas");
             System.out.println("5. Listar Pedidos");
             System.out.println("0. Voltar");
@@ -165,9 +165,6 @@ public class TelaPrincipal {
                 case 3:
                     do {
                         cadastrarPessoa();
-                        System.out.println("---------------------");
-                        System.out.println("\nPessoa cadastrada com sucesso!!");
-                        System.out.println("\nDeseja cadastrar mais uma pessoa? ");
                         System.out.println("\nSim (S) / Não (N)");
                         System.out.print("\nDigite a opção desejada: ");
                         opt = scanner.nextLine();
@@ -232,40 +229,29 @@ public class TelaPrincipal {
 
     public void cadastrarPessoa() {
         System.out.println("-------------------------");
-        System.out.println("Cadastro de Pessoa");
-        System.out.println("Digite o tipo de pessoa (1 para Cliente, 2 para Gerente): ");
-        int tipoPessoa = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println("Cadastro de Gerente");
 
         Pessoa pessoa = new Pessoa();
 
-        if (tipoPessoa == 1) {
-            Cliente cliente = new Cliente();
-            cadastroCliente();
-            pessoa = cliente;
-        } else if (tipoPessoa == 2) {
-            Gerente gerente = new Gerente();
-            System.out.println("Digite o nome do gerente: ");
-            gerente.setNome(scanner.nextLine());
+        Gerente gerente = new Gerente();
+        System.out.println("Digite o nome do gerente: ");
+        gerente.setNome(scanner.nextLine());
 
-            System.out.println("Digite o CPF do gerente: ");
-            gerente.setCpf(scanner.nextLine());
+        System.out.println("Digite o CPF do gerente: ");
+        gerente.setCpf(scanner.nextLine());
 
-            System.out.println("Digite o email do gerente: ");
-            gerente.setEmail(scanner.nextLine());
+        System.out.println("Digite o email do gerente: ");
+        gerente.setEmail(scanner.nextLine());
 
-            System.out.println("Digite o código do gerente: ");
-            gerente.setCodigo(scanner.nextLine());
+        System.out.println("Digite o código do gerente: ");
+        gerente.setCodigo(scanner.nextLine());
 
-            pessoa = gerente;
-        } else {
-            System.out.println("OPCAO INVALIDA");
-        }
+        pessoa = gerente;
 
         controleDePessoas.adicionarPessoa(pessoa);
         controleDePessoas.salvarPessoas();
         System.out.println("-------------------------");
-        System.out.println("Pessoa cadastrada com sucesso!");
+        System.out.println("Gerente cadastrado com sucesso!");
 
     }
 
