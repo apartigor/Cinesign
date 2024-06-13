@@ -3,6 +3,9 @@ package br.edu.up.modelos;
 public class Gerente extends Pessoa {
     private String codigo;
 
+    public Gerente() {
+    }
+
     public Gerente(String cpf, String nome, String email, String codigo) {
         super(cpf, nome, email);
         this.codigo = codigo;

@@ -1,14 +1,14 @@
 package br.edu.up.modelos;
 
-public abstract class Pessoa {
+public class Pessoa {
     protected String cpf;
     protected String nome;
     protected String email;
 
-    public Pessoa(){
+    public Pessoa() {
 
     }
-    
+
     public Pessoa(String cpf, String nome, String email) {
         this.cpf = cpf;
         this.nome = nome;
@@ -38,7 +38,5 @@ public abstract class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    
 
 }
