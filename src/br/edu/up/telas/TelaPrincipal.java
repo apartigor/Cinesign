@@ -98,9 +98,11 @@ public class TelaPrincipal {
                         
                         break;
                         case 0:
+                        System.out.println("---------------------");
                         System.out.println("Saindo...");
                         break;
                         default:
+                        System.out.println("---------------------");
                         System.out.println("Opção inválida!");
                         break;
                         }
@@ -109,6 +111,7 @@ public class TelaPrincipal {
                         }
                         
                         private boolean verificarSenha(Scanner scanner) {
+                            System.out.println("---------------------");
                             System.out.print("Digite a senha para acessar o menu do gerente: ");
                             String senha = scanner.nextLine();
                             return SENHA_GERENTE.equals(senha);
@@ -118,6 +121,7 @@ public class TelaPrincipal {
     private void menuGerente(Scanner scanner) {
         int opcao;
         do {
+            System.out.println("---------------------");
             System.out.println("\nMenu Gerente");
             System.out.println("1. Cadastrar Filmes");
             System.out.println("2. Cadastrar Sessão");
@@ -133,6 +137,7 @@ public class TelaPrincipal {
                     String opt;
                     do {
                         cadastroDeFilmes();
+                        System.out.println("---------------------");
                         System.out.println("\nFilme cadastrado com sucesso!!");
                         System.out.println("\nDeseja cadastrar mais um filme? ");
                         System.out.println("\nSim (S) / Não (N)");
@@ -146,6 +151,7 @@ public class TelaPrincipal {
                     String opc;
                     do {
                         cadastrarSessao();
+                        System.out.println("---------------------");
                         System.out.println("\nSessão cadastrada com sucesso!!");
                         System.out.println("\nDeseja cadastrar mais uma sessão? ");
                         System.out.println("\nSim (S) / Não (N)");
@@ -160,9 +166,11 @@ public class TelaPrincipal {
                     listarPedidos();
                     break;
                 case 0:
+                System.out.println("---------------------");
                     System.out.println("Voltando...");
                 break;
                 default:
+                System.out.println("---------------------");
                     System.out.println("Opção inválida!");
                     break;
             }
@@ -172,10 +180,12 @@ public class TelaPrincipal {
     private void menuPedido(Scanner scanner) {
         int opcao;
         do {
+            System.out.println("---------------------");
             System.out.println("\nMenu Usuário");
             System.out.println("1. Selecionar Sessão");
             System.out.println("2. Listar Filmes");
             System.out.println("0. Voltar");
+            System.out.println("---------------------");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -189,10 +199,14 @@ public class TelaPrincipal {
                     listarFilmes();
                     break;
                 case 0:
+                System.out.println("---------------------");
                     System.out.println("Voltando...");
+                    System.out.println("---------------------");
                 break;    
                 default:
+                    System.out.println("---------------------");
                     System.out.println("Opção inválida!");
+                    System.out.println("---------------------");
                     break;
             }
         } while (opcao != 0);
@@ -200,6 +214,7 @@ public class TelaPrincipal {
 
     // Pessoas
     private void listarPessoas() {
+        System.out.println("---------------------");
         System.out.println("\nLista de Pessoas:");
         for (Pessoa pessoa : controleDePessoas.listarPessoas()) {
             System.out.println(pessoa);
@@ -210,6 +225,7 @@ public class TelaPrincipal {
     public void cadastroDeFilmes() {
 
         Filme filme = new Filme();
+        System.out.println("---------------------");
 
         System.out.println("\nCadastro de Filme");
 
@@ -231,6 +247,8 @@ public class TelaPrincipal {
     }
 
 public void listarFilmes() {
+
+    System.out.println("---------------------");
     System.out.println("\nLista de Filmes: ");
     for (Filme filme : controleDeFilmes.listarFilmes()) {
         System.out.println(filme + "\n");
@@ -239,7 +257,9 @@ public void listarFilmes() {
     }
     
     private void selecionarSessao() {
+        System.out.println("---------------------");
         listarSessoes();
+        System.out.println("---------------------");
         System.out.println("Digite o código da sessão que deseja fazer o pedido: ");
         String codigoSessao = scanner.nextLine();
             for(Sessao sessao : controleDeSessao.listarSessao()){
@@ -252,6 +272,7 @@ public void listarFilmes() {
                     }else{
                         pedido.setValorTotal("30.00");
                     }
+                    System.out.println("---------------------");
                     System.out.println("Esolha o tipo de pagamento: ");
                     System.out.println("1. Crédito");
                     System.out.println("2. Débito");
@@ -269,6 +290,7 @@ public void listarFilmes() {
                             pedido.setTipoPagamento("Pix");
                             break;
                         default:
+                        System.out.println("---------------------");
                             System.out.println("Opção inválida!");
                             break;
                     }
@@ -281,6 +303,7 @@ public void listarFilmes() {
 private void cadastrarSessao() {
     
     Sessao sessao = new Sessao();
+    System.out.println("---------------------");
     
     System.out.println("\nCadastro de Sessão");
     
@@ -311,6 +334,7 @@ private void cadastrarSessao() {
 }
 
 public void listarSessoes() {
+    System.out.println("---------------------");
     System.out.println("\nLista de Sessões: ");
     for (Sessao sessao : controleDeSessao.listarSessao()) {
         System.out.println(sessao + "\n");
@@ -319,6 +343,7 @@ public void listarSessoes() {
         }
         
         public void listarPedidos() {
+            System.out.println("---------------------");
             System.out.println("\nLista de Pedidos: ");
             for (Pedido pedido : controleDePedidos.listarPedidos()) {
                 System.out.println(pedido + "\n");
@@ -333,7 +358,7 @@ Cliente objCliente = new Cliente();
 
 
 System.out.println("-------------------------");
-System.out.println("CADASTRAR CLIENTE: ");
+System.out.println("Castrar Cliente: ");
 System.out.println("Digite o nome do cliente: ");
 objCliente.setNome(scanner.nextLine());
 
