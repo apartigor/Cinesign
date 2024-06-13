@@ -257,7 +257,6 @@ public void listarFilmes() {
     }
     
     private void selecionarSessao() {
-        System.out.println("---------------------");
         listarSessoes();
         System.out.println("---------------------");
         System.out.println("Digite o código da sessão que deseja fazer o pedido: ");
