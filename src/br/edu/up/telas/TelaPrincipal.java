@@ -14,9 +14,11 @@ import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
 import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
 import br.edu.up.daos.GerenciadorDeArquivosDePedidos;
+import br.edu.up.daos.GerenciadorDeArquivosDePessoas;
 import br.edu.up.daos.GerenciadorDeArquivosDeSessoes;
 import br.edu.up.modelos.Cliente;
 import br.edu.up.modelos.Filme;
+import br.edu.up.modelos.Gerente;
 import br.edu.up.modelos.Pedido;
 import br.edu.up.modelos.Pessoa;
 import br.edu.up.modelos.Sessao;
@@ -31,6 +33,7 @@ public class TelaPrincipal {
     private final ControleDePedidos controleDePedidos = new ControleDePedidos();
 
     Scanner scanner = new Scanner(System.in);
+    GerenciadorDeArquivosDePessoas gerenciadorDePessoas = new GerenciadorDeArquivosDePessoas();
 
     public TelaPrincipal() {
         this.controleDePessoas = new ControleDePessoas();
@@ -228,7 +231,42 @@ public class TelaPrincipal {
     // Pessoas
 
     public void cadastrarPessoa() {
-        //TODO
+        System.out.println("-------------------------");
+        System.out.println("Cadastro de Pessoa");
+        System.out.println("Digite o tipo de pessoa (1 para Cliente, 2 para Gerente): ");
+        int tipoPessoa = scanner.nextInt();
+        scanner.nextLine();
+
+        Pessoa pessoa = new Pessoa();
+
+        if (tipoPessoa == 1) {
+            Cliente cliente = new Cliente();
+            cadastroCliente();
+            pessoa = cliente;
+        } else if (tipoPessoa == 2) {
+            Gerente gerente = new Gerente();
+            System.out.println("Digite o nome do gerente: ");
+            gerente.setNome(scanner.nextLine());
+
+            System.out.println("Digite o CPF do gerente: ");
+            gerente.setCpf(scanner.nextLine());
+
+            System.out.println("Digite o email do gerente: ");
+            gerente.setEmail(scanner.nextLine());
+
+            System.out.println("Digite o código do gerente: ");
+            gerente.setCodigo(scanner.nextLine());
+
+            pessoa = gerente;
+        } else {
+            System.out.println("OPCAO INVALIDA");
+        }
+
+        controleDePessoas.adicionarPessoa(pessoa);
+        controleDePessoas.salvarPessoas();
+        System.out.println("-------------------------");
+        System.out.println("Pessoa cadastrada com sucesso!");
+
     }
 
     private void listarPessoas() {
@@ -379,7 +417,7 @@ public class TelaPrincipal {
         Cliente objCliente = new Cliente();
 
         System.out.println("-------------------------");
-        System.out.println("Castrar Cliente: ");
+        System.out.println("Cadastrar Cliente: ");
         System.out.println("Digite o nome do cliente: ");
         objCliente.setNome(scanner.nextLine());
 
