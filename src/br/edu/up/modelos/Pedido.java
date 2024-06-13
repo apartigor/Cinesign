@@ -1,34 +1,32 @@
 package br.edu.up.modelos;
 
 public class Pedido {
-    private int codigo;
-    private double valorTotal;
+    private String codigo;
+    private String valorTotal;
     private String tipoPagamento;
-    private Sessao sessao;
     
     public Pedido() {
     }
 
-    public Pedido(int codigo, double valorTotal, String tipoPagamento, Sessao sessao) {
+    public Pedido(String codigo, String valorTotal, String tipoPagamento) {
         this.codigo = codigo;
         this.valorTotal = valorTotal;
         this.tipoPagamento = tipoPagamento;
-        this.sessao = sessao;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public double getValorTotal() {
+    public String getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(double valorTotal) {
+    public void setValorTotal(String valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -40,17 +38,9 @@ public class Pedido {
         this.tipoPagamento = tipoPagamento;
     }
 
-    public Sessao getSessao() {
-        return sessao;
-    }
-
-    public void setSessao(Sessao sessao) {
-        this.sessao = sessao;
-    }
-
     @Override
     public String toString() {
-        return "Pedido \nCodigo: " + codigo + ", ValorTotal: " + valorTotal + ", TipoPagamento: " + tipoPagamento + ", Sessão: " + sessao;
+        return "Pedido \nCodigo: " + codigo + ", ValorTotal: " + valorTotal + ", TipoPagamento: " + tipoPagamento;
     }
 
 }

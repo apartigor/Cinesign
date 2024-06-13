@@ -13,12 +13,15 @@ import br.edu.up.controles.ControleDeCadastroCliente;
 import br.edu.up.controles.ControleDeFilmes;
 import br.edu.up.controles.ControleDePessoas;
 import br.edu.up.controles.ControleDeSessao;
+import br.edu.up.controles.ControleDePedidos;
 import br.edu.up.daos.GerenciadorDeAquivosDeFilmes;
+import br.edu.up.daos.GerenciadorDeArquivosDePedidos;
 import br.edu.up.daos.GerenciadorDeArquivosDeSessoes;
 import br.edu.up.modelos.Pessoa;
 import br.edu.up.modelos.Cliente;
 import br.edu.up.modelos.Filme;
 import br.edu.up.modelos.Sessao;
+import br.edu.up.modelos.Pedido;
 
 public class TelaPrincipal {
     private static final String SENHA_GERENTE = "1234";
@@ -26,6 +29,7 @@ public class TelaPrincipal {
     private ControleDeFilmes controleDeFilmes;
     private ControleDeCadastroCliente controleDeCadastroCliente;
     private ControleDeSessao controleDeSessao = new ControleDeSessao();
+    private ControleDePedidos controleDePedidos = new ControleDePedidos();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -63,6 +67,7 @@ public class TelaPrincipal {
                     break;
                 default:
                     System.out.println("Opção inválida!");
+                    break;
             }
         } while (opcao != 0);
 
@@ -81,6 +86,7 @@ public class TelaPrincipal {
             System.out.println("1. Cadastrar Filmes");
             System.out.println("2. Cadastrar Sessão");
             System.out.println("3. Listar Pessoas Cadastradas");
+            System.out.println("4. Listar Pedidos");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -101,14 +107,25 @@ public class TelaPrincipal {
                     listarFilmes();
                     break;
                 case 2:
-                    cadastrarSessao();
-                    System.out.println("Cadastro de Sessão");
+                    String opc = "";
+                    do {
+                        cadastrarSessao();
+                        System.out.println("\nSessão cadastrada com sucesso!!");
+                        System.out.println("\nDeseja cadastrar mais uma sessão? ");
+                        System.out.println("\nSim (S) / Não (N)");
+                        System.out.print("\nDigite a opção desejada: ");
+                        opc = scanner.nextLine();
+                    } while (opc.equals("S") || opc.equals("Sim") || opc.equals("sim"));
                     break;
                 case 3:
                     listarPessoas();
                     break;
+                case 4:
+                    listarPedidos();
+                    break;
                 default:
                     System.out.println("Opção inválida!");
+                    break;
             }
         } while (opcao != 0);
     }
@@ -116,8 +133,9 @@ public class TelaPrincipal {
     private void menuPedido(Scanner scanner) {
         int opcao;
         do {
-            System.out.println("\nMenu Pedido");
-            System.out.println("1. Escolher Sessão");
+            System.out.println("\nMenu Usuário");
+            System.out.println("1. Selecionar Sessão");
+            System.out.println("2. Listar Filmes");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -128,8 +146,12 @@ public class TelaPrincipal {
                     selecionarSessao();
                     // Menu de selecionar o filme pelo código -> listar sessões -> fazer o pedido
                     break;
+                case 2:
+                    listarFilmes();
+                    break;    
                 default:
                     System.out.println("Opção inválida!");
+                    break;
             }
         } while (opcao != 0);
     }
@@ -181,41 +203,40 @@ public class TelaPrincipal {
             for(Sessao sessao : controleDeSessao.listarSessao()){
                 if(codigoSessao.equals(sessao.getCodigoSessao())){
                     System.out.println("Pedidio feito");
-                    menuSessao();
+                    Pedido pedido = new Pedido();
+                    pedido.setCodigo(codigoSessao);
+                    if(sessao.getAudio() != "portugues"){
+                        pedido.setValorTotal("25.00");
+                    }else{
+                        pedido.setValorTotal("30.00");
+                    }
+                    System.out.println("Esolha o tipo de pagamento: ");
+                    System.out.println("1. Crédito");
+                    System.out.println("2. Débito");
+                    System.out.println("3. Pix");
+                    int opcao = scanner.nextInt();
+
+                    switch (opcao) {
+                        case 1:
+                            pedido.setTipoPagamento("Credito");
+                            break;
+                        case 2:
+                            pedido.setTipoPagamento("Debito");
+                            break;
+                        case 3:
+                            pedido.setTipoPagamento("Pix");
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            break;
+                    }
+                    controleDePedidos.adicionarpedido(pedido);
+                    GerenciadorDeArquivosDePedidos.salvarPedido(pedido);
                 }
             }
     }
 
-    // Sessão
-    private void menuSessao() {
-        int opcao;
-        String codigo;
 
-        controleDeSessao.listarSessao();
-        System.out.println("/nMenu Sessão");
-        System.out.println("1. Escolher Sessão");
-        System.out.println("2. Excluir Sessão");
-        System.out.println("0. Voltar");
-        opcao = scanner.nextInt();
-
-        switch (opcao) {
-            case 0:
-                selecionarSessao();
-                break;
-            case 1:
-                System.out.println("Digite o código da sessão que deseja adicionar: ");
-                codigo = scanner.nextLine();
-                controleDeSessao.selecionarSessao(codigo);
-            case 2:
-                System.out.println("Digite o código da sessão que deseja excluir: ");
-                codigo = scanner.nextLine();
-                controleDeSessao.excluirSessao(codigo);
-                break;
-            default:
-                break;
-        }
-
-    }
     private void cadastrarSessao() {
 
         Sessao sessao = new Sessao();
@@ -254,6 +275,14 @@ public class TelaPrincipal {
             System.out.println(sessao + "\n");
         }
         GerenciadorDeArquivosDeSessoes.listaSessoesCsv();
+    }
+
+    public void listarPedidos() {
+        System.out.println("\nLista de Pedidos: ");
+        for (Pedido pedido : controleDePedidos.listarPedidos()) {
+            System.out.println(pedido + "\n");
+        }
+        GerenciadorDeArquivosDePedidos.listaPedidosCsv();
     }
 
     //CADASTRO CLIENTE
