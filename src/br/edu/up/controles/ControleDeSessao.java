@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ControleDeSessao {
     
-    private ArrayList<Sessao> sessoes = new ArrayList<>();
+    private List<Sessao> sessoes = new ArrayList<>();
     private Pedido pedido;
 
     public void adicionarSessao(Sessao sessao){

@@ -228,7 +228,6 @@ public class TelaPrincipal {
 
         System.out.println("Digite a sala da sessão: ");
         sessao.setSala(scanner.nextLine());
-        scanner.nextLine();
 
         System.out.println("Digite a data da sessão: ");
         sessao.setData(scanner.nextLine());
