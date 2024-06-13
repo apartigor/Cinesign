@@ -261,32 +261,37 @@ public void listarFilmes() {
         System.out.println("---------------------");
         System.out.println("Digite o código da sessão que deseja fazer o pedido: ");
         String codigoSessao = scanner.nextLine();
-            for(Sessao sessao : controleDeSessao.listarSessao()){
-                if(codigoSessao.equals(sessao.getCodigoSessao())){
-                    System.out.println("Pedidio feito");
-                    Pedido pedido = new Pedido();
-                    pedido.setCodigo(codigoSessao);
-                    if(sessao.getAudio() != "portugues"){
-                        pedido.setValorTotal("25.00");
-                    }else{
-                        pedido.setValorTotal("30.00");
-                    }
-                    System.out.println("---------------------");
-                    System.out.println("Esolha o tipo de pagamento: ");
-                    System.out.println("1. Crédito");
-                    System.out.println("2. Débito");
-                    System.out.println("3. Pix");
-                    int opcao = scanner.nextInt();
-
-                    switch (opcao) {
-                        case 1:
+        for(Sessao sessao : GerenciadorDeArquivosDeSessoes.listaSessoesCsv()){
+            if(codigoSessao.equals(sessao.getCodigoSessao())){
+                Pedido pedido = new Pedido();
+                pedido.setCodigo(codigoSessao);
+                if(sessao.getAudio() != "portugues"){
+                    pedido.setValorTotal("25.00");
+                }else{
+                    pedido.setValorTotal("30.00");
+                }
+                System.out.println("---------------------");
+                System.out.println("Esolha o tipo de pagamento: ");
+                System.out.println("1. Crédito");
+                System.out.println("2. Débito");
+                System.out.println("3. Pix");
+                int opcao = scanner.nextInt();
+                
+                switch (opcao) {
+                            case 1:
+                            System.out.println("---------------------");
                             pedido.setTipoPagamento("Credito");
+                            System.out.println("Pedido finalizado!");
                             break;
-                        case 2:
+                            case 2:
+                            System.out.println("---------------------");
                             pedido.setTipoPagamento("Debito");
+                            System.out.println("Pedido finalizado!");
                             break;
-                        case 3:
+                            case 3:
+                            System.out.println("---------------------");
                             pedido.setTipoPagamento("Pix");
+                            System.out.println("Pedido finalizado!");
                             break;
                         default:
                         System.out.println("---------------------");

@@ -4,3 +4,6 @@ codigo;valorTotal;tipoPagamento
 1;25.00;Debito
 12;30.00;Credito
 4;25.00;Pix
+12;25.00;Pix
+25;25.00;Debito
+15;25.00;Pix
